@@ -11,6 +11,8 @@ class Page1 extends StatefulWidget {
 
 class _Page1State extends State<Page1> {
   bool isPasswordVisible = false;
+  final nameController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +48,7 @@ class _Page1State extends State<Page1> {
                   ),
                   SizedBox(height: 20),
                   TextFormField(
+                    controller: nameController,
                     decoration: InputDecoration(
                         suffixIcon: Icon(Icons.person) ,
                         suffixIconColor: Colors.green[900],
@@ -64,6 +67,7 @@ class _Page1State extends State<Page1> {
                   ),
                   SizedBox(height: 10),
                   TextFormField(
+                    controller: passwordController,
                     obscureText: !isPasswordVisible,
                     decoration: InputDecoration(
                         suffixIcon: IconButton(onPressed: (){
@@ -91,7 +95,7 @@ class _Page1State extends State<Page1> {
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Homepage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Homepage(name: nameController.text,)));
                   },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: (Colors.green[400]),
